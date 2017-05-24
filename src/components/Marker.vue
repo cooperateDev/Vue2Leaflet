@@ -46,15 +46,20 @@ const props = {
     custom: false,
     default: () => new L.Icon.Default(),
   },
+  options: {
+    type: Object,
+    default: () => ({}),
+  },
 };
 
 export default {
   props: props,
   mounted() {
-    const options = {};
+    const options = this.options;
     if (this.icon) {
       options.icon = this.icon;
     }
+
     options.draggable = this.draggable;
     this.mapObject = L.marker(this.latLng, options);
     eventsBinder(this, this.mapObject, events);
