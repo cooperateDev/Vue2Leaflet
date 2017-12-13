@@ -50,10 +50,6 @@ const props = {
     default: function() {
       return {};
     }
-  },
-  tileLayerClass: {
-  	type: Function,
-	default: L.tileLayer
   }
 };
 
@@ -68,7 +64,7 @@ export default {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = this.tileLayerClass(this.url, options);
+    this.mapObject = L.tileLayer(this.url, options);
     eventsBinder(this, this.mapObject, events);
     propsBinder(this, this.mapObject, props);
   },
