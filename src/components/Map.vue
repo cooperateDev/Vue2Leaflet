@@ -58,10 +58,6 @@ const props = {
     custom: true,
     default: undefined,
   },
-  maxBounds: {
-    custom: true,
-    default: undefined,
-  },
   zoom: {
     type: Number,
     default: undefined,
@@ -165,8 +161,6 @@ export default {
       }
     },
     setBounds(newVal, oldVal) {
-      this.setMaxBounds(this.maxBounds);
-
       if (!(newVal && newVal.isValid())) {
         return;
       }
@@ -183,13 +177,6 @@ export default {
         }
       }
       this.mapObject.fitBounds(newVal, options);
-    },
-    setMaxBounds(newVal, oldVal) {
-      if (!(newVal && newVal.isValid())) {
-        return;
-      }
-
-      this.mapObject.setMaxBounds(newVal);
     },
     setPaddingBottomRight(newVal, oldVal) {
       this.paddingBottomRight = newVal;
