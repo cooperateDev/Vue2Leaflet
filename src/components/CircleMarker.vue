@@ -23,11 +23,12 @@ const events = [
   'tooltipopen',
   'tooltipclose'
 ];
-
 const props = {
-  latLngs: {
-    type: Array,
-    default: () => []
+  latLng: {
+    type: [Object, Array],
+  },
+  radius: {
+    type: Number,
   },
   lStyle: {
     type: Object,
@@ -37,16 +38,6 @@ const props = {
     type: Boolean,
     custom: true,
     default: true
-  },
-  smoothFactor: {
-    type: Number,
-    custom: true,
-    default: 1.0
-  },
-  noClip: {
-    type: Boolean,
-    custom: true,
-    default: false
   },
   stroke: {
     type: Boolean,
@@ -114,7 +105,6 @@ const props = {
     default: null
   },
 };
-
 export default {
   props: props,
   mounted() {
@@ -122,22 +112,29 @@ export default {
     if (this.color) {
       options.color = this.color;
     }
+    if (this.radius) {
+      options.radius = this.radius;
+    }
     if (this.lStyle) {
       for (var style in this.lStyle) {
         options[style] = this.lStyle[style];
       }
     }
-    const otherPropertytoInitialize = ["smoothFactor", "noClip", "stroke", "color", "weight", "opacity", "lineCap", "lineJoin", "dashArray", "dashOffset", "fill", "fillColor", "fillOpacity", "fillRule", "className" ];
+    const otherPropertytoInitialize = ["smoothFactor", "noClip", "stroke", "color", "weight",
+      "opacity", "lineCap", "lineJoin", "dashArray", "dashOffset", "fill", "fillColor",
+      "fillOpacity", "fillRule", "className" ];
+
     for (var i = 0; i < otherPropertytoInitialize.length; i++) {
       const propName = otherPropertytoInitialize[i];
-      if(this[propName]) {
+      if(this[propName] !== undefined) {
         options[propName] = this[propName];
       }
     }
-    this.mapObject = L.polygon(this.latLngs, options);
+
+    this.mapObject = L.circleMarker(this.latLng, options);
     eventsBinder(this, this.mapObject, events);
     propsBinder(this, this.mapObject, props);
-    if (this.$parent._isMounted)  {
+    if (this.$parent._isMounted) {
       this.deferredMountedTo(this.$parent.mapObject);
     }
   },
@@ -167,18 +164,6 @@ export default {
     setLStyle(newVal, oldVal) {
       if (newVal == oldVal) return;
       this.mapObject.setStyle(newVal);
-    },
-    setSmoothFactor(newVal, oldVal) {
-      if (newVal == oldVal) return;
-      if (newVal) {
-        this.mapObject.setStyle({ smoothFactor: newVal });
-      }
-    },
-    setNoClip(newVal, oldVal) {
-      if (newVal == oldVal) return;
-      if (newVal) {
-        this.mapObject.setStyle({ noClip: newVal });
-      }
     },
     setStroke(newVal, oldVal) {
       if (newVal == oldVal) return;
@@ -253,13 +238,7 @@ export default {
       if (newVal) {
         this.mapObject.setStyle({ className: newVal });
       }
-    },
-    addLatLng(value) {
-      this.mapObject.addLatLng(value);
-    },
-    getGeoJSONData() {
-      return this.mapObject.toGeoJSON();
-    },
+    }
   }
 };
 </script>

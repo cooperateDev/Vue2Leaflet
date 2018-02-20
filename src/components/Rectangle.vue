@@ -117,13 +117,10 @@ export default {
         options[s] = this.lStyle[s];
       }
     }
-    const otherPropertytoInitialize = ["smoothFactor", "noClip", "stroke", "color", "weight",
-      "opacity", "lineCap", "lineJoin", "dashArray", "dashOffset", "fill", "fillColor",
-      "fillOpacity", "fillRule", "className"
-    ];
+    const otherPropertytoInitialize = ["smoothFactor", "noClip", "stroke", "color", "weight", "opacity", "lineCap", "lineJoin", "dashArray", "dashOffset", "fill", "fillColor", "fillOpacity", "fillRule", "className" ];
     for (var i = 0; i < otherPropertytoInitialize.length; i++) {
       const propName = otherPropertytoInitialize[i];
-      if(this[propName] !== undefined) {
+      if(this[propName]) {
         options[propName] = this[propName];
       }
     }

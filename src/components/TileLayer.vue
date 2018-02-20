@@ -60,7 +60,7 @@ export default {
     const otherPropertytoInitialize = [ "attribution", "token", "detectRetina", "opacity", "zIndex" ];
     for (var i = 0; i < otherPropertytoInitialize.length; i++) {
       const propName = otherPropertytoInitialize[i];
-      if(this[propName] !== undefined) {
+      if(this[propName]) {
         options[propName] = this[propName];
       }
     }
