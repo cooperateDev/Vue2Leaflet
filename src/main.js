@@ -1,6 +1,3 @@
-exports.findRealParent = require('./utils/findRealParent').default;
-exports.propsBinder = require('./utils/propsBinder').default;
-
 exports.LCircle = require('./components/LCircle').default;
 exports.LCircleMarker = require('./components/LCircleMarker').default;
 exports.LControlAttribution = require('./components/LControlAttribution').default;

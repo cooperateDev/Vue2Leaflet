@@ -23,6 +23,7 @@ export default {
   props: props,
   data() {
     return {
+      parentMapObject: undefined
     }
   },
   mounted() {
