@@ -20,7 +20,8 @@ const props = {
     default: true,
   },
   latLng: {
-    type: [Object, Array]
+    type: [Object, Array],
+    custom: true,
   },
   icon: {
     custom: false,
@@ -42,7 +43,6 @@ export default {
   data() {
     return {
       ready: false,
-      parentMapObject: undefined
     }
   },
   mounted() {
@@ -83,6 +83,22 @@ export default {
           this.parentContainer.addLayer(this);
         } else {
           this.parentContainer.removeLayer(this);
+        }
+      }
+    },
+    setLatLng(newVal) {
+      if (newVal == null) {
+        return;
+      }
+
+      if (this.mapObject) {
+        let oldLatLng = this.mapObject.getLatLng();
+        let newLatLng = {
+          lat: newVal[0] || newVal.lat,
+          lng: newVal[1] || newVal.lng,
+        };
+        if (newLatLng.lat != oldLatLng.lat || newLatLng.lng != oldLatLng.lng) {
+          this.mapObject.setLatLng(newLatLng);
         }
       }
     }
