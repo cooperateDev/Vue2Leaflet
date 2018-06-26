@@ -17,9 +17,6 @@
         <a href="#" @click="currentView='custom-url-params'">Custom Url Params</a>
       </li>
       <li>
-        <a href="#" @click="currentView='custom-control'">Custom Leaflet Control</a>
-      </li>
-      <li>
         <a href="#" @click="currentView='set-bounds'">Set bounds</a>
       </li>
       <li>
@@ -53,7 +50,6 @@
 
 <script>
 import CRSAndImageOverlay from './components/CRSAndImageOverlay';
-import CustomControl from './components/CustomControl';
 import CustomPath from './components/CustomPath';
 import CustomUrlParams from './components/CustomUrlParams';
 import Example from './components/Example';
@@ -71,7 +67,6 @@ import WorldCopyJump from './components/WorldCopyJump';
 export default {
   name: 'app',
   components: {
-    CustomControl,
     CustomPath,
     CustomUrlParams,
     Example,
