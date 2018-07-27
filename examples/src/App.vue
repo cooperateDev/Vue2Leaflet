@@ -71,11 +71,6 @@
           href="#"
           @click="currentView='crs'">CRS and Image Overlay</a>
       </li>
-      <li>
-        <a
-          href="#"
-          @click="currentView='stress'">Load Test</a>
-      </li>
     </ul>
     <component
       id="full_div"
@@ -98,7 +93,6 @@ import SetBounds from './components/SetBounds';
 import Simple from './components/Simple';
 import WMSLayers from './components/WMSLayers';
 import WorldCopyJump from './components/WorldCopyJump';
-import LoadTest from './components/LoadTest';
 
 export default {
   name: 'App',
@@ -116,12 +110,11 @@ export default {
     'geo-json': GeoJSON,
     'geo-json2': GeoJSON2,
     'wms-layers': WMSLayers,
-    'crs': CRSAndImageOverlay,
-    stress: LoadTest
+    'crs': CRSAndImageOverlay
   },
   data () {
     return {
-      currentView: 'stress'
+      currentView: 'simple'
     };
   }
 };
