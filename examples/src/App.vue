@@ -2,79 +2,49 @@
   <div>
     <ul id="side">
       <li>
-        <a
-          href="#"
-          @click="currentView='simple'">Simple map</a>
+        <a href="#" @click="currentView='simple'">Simple map</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='marker-popup-example'">Custom Component</a>
+        <a href="#" @click="currentView='marker-popup-example'">Custom Component</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='multi-map'">Two maps</a>
+        <a href="#" @click="currentView='multi-map'">Two maps</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='custom-path'">Custom path</a>
+        <a href="#" @click="currentView='custom-path'">Custom path</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='custom-url-params'">Custom Url Params</a>
+        <a href="#" @click="currentView='custom-url-params'">Custom Url Params</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='set-bounds'">Set bounds</a>
+        <a href="#" @click="currentView='set-bounds'">Set bounds</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='example'">Some examples</a>
+        <a href="#" @click="currentView='example'">Some examples</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='geometry-test'">Geometry</a>
+        <a href="#" @click="currentView='geometry-test'">Geometry</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='popup-on-geometry-test'">Popup on Geometry</a>
+        <a href="#" @click="currentView='popup-on-geometry-test'">Popup on Geometry</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='world-copy-jump'">Jump on World Copy</a>
+        <a href="#" @click="currentView='world-copy-jump'">Jump on World Copy</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='geo-json'">GeoJSON</a>
+        <a href="#" @click="currentView='geo-json'">GeoJSON</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='geo-json2'">GeoJSON 2</a>
+        <a href="#" @click="currentView='geo-json2'">GeoJSON 2</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='wms-layers'">WMS Tile Layers</a>
+        <a href="#" @click="currentView='wms-layers'">WMS Tile Layers</a>
       </li>
       <li>
-        <a
-          href="#"
-          @click="currentView='crs'">CRS and Image Overlay</a>
+        <a href="#" @click="currentView='crs'">CRS and Image Overlay</a>
       </li>
     </ul>
-    <component
-      id="full_div"
-      :is="currentView"/>
+    <component id="full_div" :is="currentView"></component>
   </div>
 </template>
 
@@ -95,7 +65,7 @@ import WMSLayers from './components/WMSLayers';
 import WorldCopyJump from './components/WorldCopyJump';
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     CustomPath,
     CustomUrlParams,
@@ -110,14 +80,14 @@ export default {
     'geo-json': GeoJSON,
     'geo-json2': GeoJSON2,
     'wms-layers': WMSLayers,
-    'crs': CRSAndImageOverlay
+    'crs': CRSAndImageOverlay,
   },
   data () {
     return {
       currentView: 'simple'
-    };
+    }
   }
-};
+}
 </script>
 
 <style>
@@ -155,6 +125,7 @@ ul {
   margin: 0;
   padding: 0;
 }
+
 
 li {
   font: 200 15px/1.5 Helvetica, Verdana, sans-serif;

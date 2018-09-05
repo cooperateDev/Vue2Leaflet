@@ -11,15 +11,6 @@
 
 export default {
   name: 'GeoJson2Popup',
-  props: {
-    type: {
-      type: String,
-      default: ''
-    },
-    text: {
-      type: String,
-      default: ''
-    }
-  }
-};
+  props: ['type', 'text']
+}
 </script>

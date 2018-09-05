@@ -18,20 +18,20 @@ const props = {
   },
   options: {
     type: Object,
-    default: function () {
+    default: function() {
       return {};
     }
   },
   transparent: {
     type: Boolean,
-    custom: false
+    custom: false,
   },
   version: {
     type: String,
     default: '1.1.1'
   },
   crs: {
-    default: null
+    default: null,
   },
   upperCase: {
     type: Boolean,
@@ -57,8 +57,8 @@ const props = {
   visible: {
     type: Boolean,
     custom: true,
-    default: true
-  }
+    default: true,
+  },
 };
 export default {
   name: 'LWMSTileLayer',
@@ -68,7 +68,7 @@ export default {
     const otherPropertytoInitialize = [ 'layers', 'styles', 'format', 'transparent', 'version', 'crs', 'upperCase', 'zIndex', 'opacity' ];
     for (var i = 0; i < otherPropertytoInitialize.length; i++) {
       const propName = otherPropertytoInitialize[i];
-      if (this[propName] !== undefined) {
+      if(this[propName] !== undefined) {
         options[propName] = this[propName];
       }
     }
@@ -78,12 +78,9 @@ export default {
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this, !this.visible);
   },
-  beforeDestroy () {
-    this.parentContainer.removeLayer(this);
-  },
   methods: {
-    setVisible (newVal, oldVal) {
-      if (newVal === oldVal) return;
+    setVisible(newVal, oldVal) {
+      if (newVal == oldVal) return;
       if (this.mapObject) {
         if (newVal) {
           this.parentContainer.addLayer(this);
@@ -93,8 +90,11 @@ export default {
       }
     }
   },
-  render () {
+  beforeDestroy() {
+    this.parentContainer.removeLayer(this);
+  },
+  render() {
     return null;
   }
-};
+}
 </script>
