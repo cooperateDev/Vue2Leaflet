@@ -14,23 +14,20 @@
       <l-tile-layer
         :url="url"
         :attribution="attribution"/>
-      <l-marker :lat-lng="marker">
-        <l-tooltip> I am a tooltip </l-tooltip>
-      </l-marker>
+      <l-marker :lat-lng="marker"/>
     </l-map>
   </div>
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LTooltip } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 export default {
   name: 'Example',
   components: {
     LMap,
     LTileLayer,
-    LMarker,
-    LTooltip
+    LMarker
   },
   data () {
     return {
