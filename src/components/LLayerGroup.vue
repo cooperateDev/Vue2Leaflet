@@ -13,14 +13,6 @@ const props = {
     type: Boolean,
     custom: true,
     default: true
-  },
-  layerType: {
-    type: String,
-    custom: true
-  },
-  name: {
-    type: String,
-    custom: true
   }
 };
 
@@ -64,20 +56,6 @@ export default {
         this.parentContainer.addLayer(this);
       } else {
         this.parentContainer.removeLayer(this);
-      }
-    },
-    setName(newVal, oldVal) {
-      if (newVal === oldVal) return;
-      this.parentContainer.removeLayer(this);
-      if (this.visible) {
-        this.parentContainer.addLayer(this);
-      }
-    },
-    setLayerType(newVal, oldVal) {
-      if (newVal === oldVal) return;
-      this.parentContainer.removeLayer(this);
-      if (this.visible) {
-        this.parentContainer.addLayer(this);
       }
     }
   }
