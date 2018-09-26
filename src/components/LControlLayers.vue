@@ -1,44 +1,55 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
-import Control from '../mixins/Control.js';
+
+const props = {
+  collapsed: {
+    type: Boolean,
+    default: true
+  },
+  autoZIndex: {
+    type: Boolean,
+    default: true
+  },
+  hideSingleBase: {
+    type: Boolean,
+    default: false
+  },
+  sortLayers: {
+    type: Boolean,
+    default: false
+  },
+  sortFunction: {
+    type: Function,
+    default: undefined
+  },
+  position: {
+    type: String,
+    default: 'topright'
+  },
+  options: {
+    type: Object,
+    default: () => ({})
+  }
+};
 
 export default {
   name: 'LControlLayers',
-  mnixins: [Control],
-  props: {
-    collapsed: {
-      type: Boolean,
-      default: true
-    },
-    autoZIndex: {
-      type: Boolean,
-      default: true
-    },
-    hideSingleBase: {
-      type: Boolean,
-      default: false
-    },
-    sortLayers: {
-      type: Boolean,
-      default: false
-    },
-    sortFunction: {
-      type: Function,
-      default: undefined
-    }
-  },
+  props: props,
   mounted () {
-    this.controlLayersOptions = {
-      ...this.controlOptions,
-      collapsed: this.collapsed,
-      autoZIndex: this.autoZIndex,
-      hideSingleBase: this.hideSingleBase,
-      sortLayers: this.sortLayers,
-      sortFunction: this.sortFunction
-    };
-    this.mapObject = L.control.layers(null, null, this.controlLayersOptions);
+    const options = this.options;
+    const otherPropertytoInitialize = [ 'collapsed', 'autoZIndex', 'hideSingleBase', 'sortLayers', 'sortFunction' ];
+    for (var i = 0; i < otherPropertytoInitialize.length; i++) {
+      const propName = otherPropertytoInitialize[i];
+      if (this[propName] !== undefined) {
+        options[propName] = this[propName];
+      }
+    }
+    this.mapObject = L.control.layers(null, null, options);
     propsBinder(this, this.mapObject, props);
     this.$parent.registerLayerControl(this);
+  },
+  beforeDestroy () {
+    this.mapObject.remove();
   },
   methods: {
     addLayer (layer) {

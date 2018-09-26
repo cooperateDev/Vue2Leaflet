@@ -7,11 +7,18 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
-import LayerGroup from '../mixins/LayerGroup.js';
+
+const props = {
+  visible: {
+    type: Boolean,
+    custom: true,
+    default: true
+  }
+};
 
 export default {
   name: 'LFeatureGroup',
-  mixins: [LayerGroup],
+  props: props,
   data () {
     return {
       ready: false
@@ -19,12 +26,37 @@ export default {
   },
   mounted () {
     this.mapObject = L.featureGroup();
-    propsBinder(this, this.mapObject, this.$options.props);
+    propsBinder(this, this.mapObject, props);
     L.DomEvent.on(this.mapObject, this.$listeners);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent, true);
     if (this.visible) {
       this.parentContainer.addLayer(this);
+    }
+  },
+  beforeDestroy () {
+    this.parentContainer.removeLayer(this);
+  },
+  methods: {
+    addLayer (layer, alreadyAdded) {
+      if (!alreadyAdded) {
+        this.mapObject.addLayer(layer.mapObject);
+      }
+      this.parentContainer.addLayer(layer, true);
+    },
+    removeLayer (layer, alreadyRemoved) {
+      if (!alreadyRemoved) {
+        this.mapObject.removeLayer(layer.mapObject);
+      }
+      this.parentContainer.removeLayer(layer, true);
+    },
+    setVisible (newVal, oldVal) {
+      if (newVal === oldVal) return;
+      if (newVal) {
+        this.parentContainer.addLayer(this);
+      } else {
+        this.parentContainer.removeLayer(this);
+      }
     }
   }
 };

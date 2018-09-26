@@ -1,39 +1,51 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
-import Control from '../mixins/Control.js';
+
+const props = {
+  zoomInText: {
+    type: String,
+    default: '+'
+  },
+  zoomInTitle: {
+    type: String,
+    default: 'Zoom in'
+  },
+  zoomOutText: {
+    type: String,
+    default: '-'
+  },
+  zoomOutTitle: {
+    type: String,
+    default: 'Zoom out'
+  },
+  position: {
+    type: String,
+    default: 'topright'
+  },
+  options: {
+    type: Object,
+    default: () => ({})
+  }
+};
 
 export default {
   name: 'LControlZoom',
-  mnixins: [Control],
-  props: {
-    zoomInText: {
-      type: String,
-      default: '+'
-    },
-    zoomInTitle: {
-      type: String,
-      default: 'Zoom in'
-    },
-    zoomOutText: {
-      type: String,
-      default: '-'
-    },
-    zoomOutTitle: {
-      type: String,
-      default: 'Zoom out'
-    }
-  },
+  props: props,
   mounted () {
-    this.controlZoomOptions = {
-      ...this.controlOptions,
-      zoomInText: this.zoomInText,
-      zoomInTitle: this.zoomInTitle,
-      zoomOutText: this.zoomOutText,
-      zoomOutTitle: this.zoomOutTitle
-    };
-    this.mapObject = L.control.zoom(this.controlZoomOptions);
-    propsBinder(this, this.mapObject, this.$options.props);
+    const options = this.options;
+    const otherPropertytoInitialize = [ 'zoomInText', 'zoomInTitle', 'zoomOutText', 'zoomOutTitle', 'position' ];
+    for (var i = 0; i < otherPropertytoInitialize.length; i++) {
+      const propName = otherPropertytoInitialize[i];
+      if (this[propName] !== undefined) {
+        options[propName] = this[propName];
+      }
+    }
+    this.mapObject = L.control.zoom(options);
+    propsBinder(this, this.mapObject, props);
     this.mapObject.addTo(this.$parent.mapObject);
+  },
+  beforeDestroy () {
+    this.mapObject.remove();
   },
   render () {
     return null;
