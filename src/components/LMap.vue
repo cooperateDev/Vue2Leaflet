@@ -109,7 +109,7 @@ export default {
       for (var layer in this.layersToAdd) {
         this.layerControl.addLayer(layer);
       }
-      this.layersToAdd = [];
+      this.layersToAdd = null;
     },
     addLayer (layer, alreadyAdded) {
       if (layer.layerType !== undefined) {
