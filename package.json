@@ -24,11 +24,10 @@
   },
   "dependencies": {
     "leaflet": "^1.3.4",
+    "vue": "^2.5.3",
     "@types/leaflet": "^1.2.11"
   },
-  "peerDependencies": {
-    "vue": "^2.5.3"
-  },
+  "peerDependencies": {},
   "size-limit": [
     {
       "path": "dist/vue2-leaflet.min.js",
