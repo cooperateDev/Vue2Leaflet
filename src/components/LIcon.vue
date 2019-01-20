@@ -8,7 +8,6 @@
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
-import { DomEvent, divIcon, icon } from 'leaflet';
 
 export default {
   name: 'LIcon',
@@ -140,7 +139,7 @@ export default {
       }
 
       if (this.iconObject) {
-        DomEvent.off(this.iconObject, this.$listeners);
+        L.DomEvent.off(this.iconObject, this.$listeners);
       }
 
       const options = optionsMerger({
@@ -160,12 +159,12 @@ export default {
       }, this);
 
       if (options.html) {
-        this.iconObject = divIcon(options);
+        this.iconObject = L.divIcon(options);
       } else {
-        this.iconObject = icon(options);
+        this.iconObject = L.icon(options);
       }
 
-      DomEvent.on(this.iconObject, this.$listeners);
+      L.DomEvent.on(this.iconObject, this.$listeners);
 
       this.parentContainer.mapObject.setIcon(this.iconObject);
 

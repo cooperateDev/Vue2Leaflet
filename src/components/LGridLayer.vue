@@ -7,13 +7,12 @@ import Vue from 'vue';
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
-import GridLayerMixin from '../mixins/GridLayer.js';
+import GridLayer from '../mixins/GridLayer.js';
 import Options from '../mixins/Options.js';
-import { GridLayer, DomEvent, DomUtil } from 'leaflet';
 
 export default {
   name: 'LGridLayer',
-  mixins: [GridLayerMixin, Options],
+  mixins: [GridLayer, Options],
 
   props: {
     tileComponent: {
@@ -36,10 +35,10 @@ export default {
   },
 
   mounted () {
-    const GLayer = GridLayer.extend({});
+    const GLayer = L.GridLayer.extend({});
     const options = optionsMerger(this.gridLayerOptions, this);
     this.mapObject = new GLayer(options);
-    DomEvent.on(this.mapObject, this.$listeners);
+    L.DomEvent.on(this.mapObject, this.$listeners);
     this.mapObject.on('tileunload', this.onUnload, this);
     propsBinder(this, this.mapObject, this.$options.props);
     this.mapObject.createTile = this.createTile;
@@ -54,8 +53,8 @@ export default {
 
   methods: {
     createTile (coords) {
-      let div = DomUtil.create('div');
-      let dummy = DomUtil.create('div');
+      let div = L.DomUtil.create('div');
+      let dummy = L.DomUtil.create('div');
       div.appendChild(dummy);
 
       const tileInstance = new this.TileConstructor({

@@ -1,3 +1,4 @@
+import L from 'leaflet';
 import findRealParent from './utils/findRealParent';
 import propsBinder from './utils/propsBinder';
 
@@ -26,6 +27,7 @@ import LTooltip from './components/LTooltip';
 import LWMSTileLayer from './components/LWMSTileLayer';
 
 export {
+  L,
   findRealParent,
   propsBinder,
   LCircle,
