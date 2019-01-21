@@ -2,12 +2,18 @@ module.exports = {
   css: {
     extract: false
   },
+  pluginOptions: {
+    webpackBundleAnalyzer: {
+      openAnalyzer: false
+    }
+  },
   configureWebpack: config => {
     if (config.output.libraryTarget === 'umd') {
       config.output.umdNamedDefine = true;
       config.output.library = 'Vue2Leaflet';
     }
-    config.externals = [{
+    config.externals = {
+      ...config.externals,
       'leaflet': {
         umd: 'L',
         root: 'L',
@@ -15,15 +21,7 @@ module.exports = {
         commonjs2: 'leaflet',
         commonjs: 'leaflet',
         amd: 'leaflet'
-      },
-      'vue': {
-        umd: 'Vue',
-        global: 'Vue',
-        root: 'Vue',
-        commonjs2: 'vue',
-        commonjs: 'vue',
-        amd: 'vue'
       }
-    }];
+    };
   }
 };
