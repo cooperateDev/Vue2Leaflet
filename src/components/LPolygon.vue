@@ -8,12 +8,11 @@
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
-import PolygonMixin from '../mixins/Polygon.js';
-import { polygon, DomEvent } from 'leaflet';
+import Polygon from '../mixins/Polygon.js';
 
 export default {
   name: 'LPolygon',
-  mixins: [PolygonMixin],
+  mixins: [Polygon],
   props: {
     latLngs: {
       type: Array,
@@ -27,8 +26,8 @@ export default {
   },
   mounted () {
     const options = optionsMerger(this.polygonOptions, this);
-    this.mapObject = polygon(this.latLngs, options);
-    DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = L.polygon(this.latLngs, options);
+    L.DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, this.$options.props);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);

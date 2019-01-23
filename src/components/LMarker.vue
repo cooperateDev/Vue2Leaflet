@@ -5,7 +5,6 @@ import debounce from '../utils/debounce.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import Layer from '../mixins/Layer.js';
 import Options from '../mixins/Options.js';
-import { marker, DomEvent, Icon } from 'leaflet';
 
 export default {
   name: 'LMarker',
@@ -28,7 +27,7 @@ export default {
     icon: {
       type: [Object],
       custom: false,
-      default: () => new Icon.Default()
+      default: () => new L.Icon.Default()
     },
     zIndexOffset: {
       type: Number,
@@ -48,8 +47,8 @@ export default {
       zIndexOffset: this.zIndexOffset,
       draggable: this.draggable
     }, this);
-    this.mapObject = marker(this.latLng, options);
-    DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = L.marker(this.latLng, options);
+    L.DomEvent.on(this.mapObject, this.$listeners);
     this.mapObject.on('move', debounce(this.latLngSync, 100));
     propsBinder(this, this.mapObject, this.$options.props);
     this.parentContainer = findRealParent(this.$parent);
