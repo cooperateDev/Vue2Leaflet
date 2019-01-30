@@ -47,19 +47,13 @@ export default {
 }
 ```
 
-[filename](../props-notice.md ':include')
-
 ## Methods
 
-`l-tile-layer` does not expose any public method on his own.
-
-[filename](../methods-notice.md ':include')
+`l-tile-layer` does not expose any public method on his own, see inherited ones.
 
 ## Events
 
-`l-tile-layer` does not emit any event on his own.
-
-[filename](../events-notice.md ':include')
+`l-tile-layer` does emit any event
 
 ## Extends
 
