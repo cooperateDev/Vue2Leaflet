@@ -52,7 +52,7 @@ export default {
     fill: {
       type: Boolean,
       custom: true,
-      default: false
+      default: true
     },
     fillColor: {
       type: String,
