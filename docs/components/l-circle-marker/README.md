@@ -59,19 +59,14 @@ export default {
 }
 ```
 
-[filename](../props-notice.md ':include')
-
 ## Methods
 
-`l-circle-marker` does not expose any public method on his own.
-
-[filename](../methods-notice.md ':include')
+`l-circle-marker` does not expose any public method on his own, see inherited methods.
 
 ## Events
 
-`l-circle-marker` does not emit any event on his own.
+`l-circle-marker` does emit any event
 
-[filename](../events-notice.md ':include')
 
 ## Extends
 

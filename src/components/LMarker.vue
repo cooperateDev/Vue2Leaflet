@@ -5,7 +5,6 @@ import debounce from '../utils/debounce.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import Layer from '../mixins/Layer.js';
 import Options from '../mixins/Options.js';
-import { latLng } from 'leaflet';
 
 export default {
   name: 'LMarker',
@@ -68,8 +67,11 @@ export default {
       }
 
       if (this.mapObject) {
-        const oldLatLng = this.mapObject.getLatLng();
-        const newLatLng = latLng(newVal);
+        let oldLatLng = this.mapObject.getLatLng();
+        let newLatLng = {
+          lat: newVal[0] || newVal.lat,
+          lng: newVal[1] || newVal.lng
+        };
         if (newLatLng.lat !== oldLatLng.lat || newLatLng.lng !== oldLatLng.lng) {
           this.mapObject.setLatLng(newLatLng);
         }
