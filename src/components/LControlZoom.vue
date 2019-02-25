@@ -1,12 +1,12 @@
 <script>
-import { optionsMerger, propsBinder } from '../utils/utils.js';
-import ControlMixin from '../mixins/Control.js';
+import propsBinder from '../utils/propsBinder.js';
+import { optionsMerger } from '../utils/optionsUtils.js';
+import Control from '../mixins/Control.js';
 import Options from '../mixins/Options.js';
-import { control } from 'leaflet';
 
 export default {
   name: 'LControlZoom',
-  mixins: [ControlMixin, Options],
+  mixins: [Control, Options],
   props: {
     zoomInText: {
       type: String,
@@ -33,7 +33,7 @@ export default {
       zoomOutText: this.zoomOutText,
       zoomOutTitle: this.zoomOutTitle
     }, this);
-    this.mapObject = control.zoom(options);
+    this.mapObject = L.control.zoom(options);
     propsBinder(this, this.mapObject, this.$options.props);
     this.mapObject.addTo(this.$parent.mapObject);
   },

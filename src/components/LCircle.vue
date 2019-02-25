@@ -5,13 +5,14 @@
 </template>
 
 <script>
-import { optionsMerger, propsBinder, findRealParent } from '../utils/utils.js';
-import CircleMixin from '../mixins/Circle.js';
-import { circle, DomEvent } from 'leaflet';
+import propsBinder from '../utils/propsBinder.js';
+import findRealParent from '../utils/findRealParent.js';
+import { optionsMerger } from '../utils/optionsUtils.js';
+import Circle from '../mixins/Circle.js';
 
 export default {
   name: 'LCircle',
-  mixins: [CircleMixin],
+  mixins: [Circle],
   props: {
     latLng: {
       type: [Object, Array],
@@ -25,8 +26,8 @@ export default {
   },
   mounted () {
     const options = optionsMerger(this.circleOptions, this);
-    this.mapObject = circle(this.latLng, options);
-    DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject = L.circle(this.latLng, options);
+    L.DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, this.$options.props);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);

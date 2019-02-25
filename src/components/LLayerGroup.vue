@@ -5,22 +5,22 @@
 </template>
 
 <script>
-import { propsBinder, findRealParent } from '../utils/utils.js';
-import LayerGroupMixin from '../mixins/LayerGroup.js';
-import { layerGroup, DomEvent } from 'leaflet';
+import propsBinder from '../utils/propsBinder.js';
+import findRealParent from '../utils/findRealParent.js';
+import LayerGroup from '../mixins/LayerGroup.js';
 
 export default {
   name: 'LLayerGroup',
-  mixins: [LayerGroupMixin],
+  mixins: [LayerGroup],
   data () {
     return {
       ready: false
     };
   },
   mounted () {
-    this.mapObject = layerGroup();
+    this.mapObject = L.layerGroup();
     propsBinder(this, this.mapObject, this.$options.props);
-    DomEvent.on(this.mapObject, this.$listeners);
+    L.DomEvent.on(this.mapObject, this.$listeners);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent);
     if (this.visible) {
