@@ -5,11 +5,9 @@
 </template>
 
 <script>
-import propsBinder from '../utils/propsBinder.js';
-import debounce from '../utils/debounce.js';
-import { optionsMerger } from '../utils/optionsUtils.js';
+import { optionsMerger, propsBinder, debounce } from '../utils/utils.js';
 import Options from '../mixins/Options.js';
-import { latLng } from 'leaflet';
+import { CRS, DomEvent, map, LatLngBounds, latLngBounds } from 'leaflet';
 
 export default {
   name: 'LMap',
@@ -64,7 +62,7 @@ export default {
     crs: {
       type: Object,
       custom: true,
-      default: () => L.CRS.EPSG3857
+      default: () => CRS.EPSG3857
     },
     maxBoundsViscosity: {
       type: Number,
@@ -132,10 +130,10 @@ export default {
       fadeAnimation: this.fadeAnimation,
       markerZoomAnimation: this.markerZoomAnimation
     }, this);
-    this.mapObject = L.map(this.$el, options);
+    this.mapObject = map(this.$el, options);
     this.setBounds(this.bounds);
     this.mapObject.on('moveend', debounce(this.moveEndHandler, 100));
-    L.DomEvent.on(this.mapObject, this.$listeners);
+    DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, this.$options.props);
     this.ready = true;
     this.$emit('leaflet:load');
@@ -180,19 +178,30 @@ export default {
       if (newVal == null) {
         return;
       }
-      const newCenter = latLng(newVal);
-      const oldCenter = this.lastSetCenter || this.mapObject.getCenter();
-      if (oldCenter.lat !== newCenter.lat ||
-        oldCenter.lng !== newCenter.lng) {
-        this.lastSetCenter = newCenter;
-        this.mapObject.panTo(newCenter);
+
+      let newLat = 0;
+      let newLng = 0;
+      if (Array.isArray(newVal)) {
+        newLat = newVal[0];
+        newLng = newVal[1];
+      } else {
+        newLat = newVal.lat;
+        newLng = newVal.lng;
+      }
+      let center = this.lastSetCenter == null ? this.mapObject.getCenter() : this.lastSetCenter;
+      center = { ...center };
+      if (center.lat !== newLat || center.lng !== newLng) {
+        center.lat = newVal.lat;
+        center.lng = newVal.lng;
+        this.lastSetCenter = center;
+        this.mapObject.panTo(newVal);
       }
     },
     setBounds (newVal, oldVal) {
       if (!newVal) {
         return;
       }
-      if (newVal instanceof L.LatLngBounds) {
+      if (newVal instanceof LatLngBounds) {
         if (!newVal.isValid()) {
           return;
         }
@@ -230,7 +239,7 @@ export default {
       let northEastNewLat = 0;
       let northEastNewLng = 0;
       if (Array.isArray(newVal)) {
-        newVal = L.latLngBounds(newVal);
+        newVal = latLngBounds(newVal);
       }
       southWestNewLat = newVal._southWest.lat;
       southWestNewLng = newVal._southWest.lng;

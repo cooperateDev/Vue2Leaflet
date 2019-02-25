@@ -142,16 +142,10 @@ export default {
 }
 ```
 
-[filename](../props-notice.md ':include')
-
 ## Methods
 
-`l-icon` does not expose any public method on his own.
-
-[filename](../methods-notice.md ':include')
+`l-icon` does not expose any public method on his own, see inherited ones.
 
 ## Events
 
-`l-icon` does not emit any event on his own.
-
-[filename](../events-notice.md ':include')
+`l-icon` does emit any event

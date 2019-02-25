@@ -60,21 +60,15 @@ export default {
 }
 ```
 
-[filename](../props-notice.md ':include')
-
 ## Methods
 
-`l-grid-layer` does not expose any public method on his own.
-
-[filename](../methods-notice.md ':include')
+`l-grid-layer` does not expose any public method on his own, see inherited ones.
 
 ## Events
 
-`l-grid-layer` does emit any event on his own.
+`l-grid-layer` does emit any event.
 Leaflet's `tileunload` event is internally used to trigger the destruction
 of the tile components when a tile leaves the visible area.
-
-[filename](../events-notice.md ':include')
 
 ## Extends
 
