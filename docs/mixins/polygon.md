@@ -1,13 +1,6 @@
 ### Props
-```js
-{
-  fill: {
-    type: Boolean,
-    custom: true,
-    default: true
-  }
-}
-```
+
+`Polygon` does not have any props
 
 ### Methods
 
