@@ -151,10 +151,6 @@ export default {
     markerZoomAnimation: {
       type: Boolean,
       default: null
-    },
-    noBlockingAnimations: {
-      type: Boolean,
-      default: false
     }
 }
 ```
