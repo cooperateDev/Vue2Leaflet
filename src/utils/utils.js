@@ -16,7 +16,6 @@ export const debounce = (fn, time) => {
 };
 
 export const capitalizeFirstLetter = (string) => {
-  if (!string || typeof string.charAt !== 'function') { return string; }
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
@@ -79,7 +78,7 @@ export const optionsMerger = (props, instance) => {
 
 export const findRealParent = (firstVueParent) => {
   let found = false;
-  while (firstVueParent && !found) {
+  while (!found) {
     if (firstVueParent.mapObject === undefined) {
       firstVueParent = firstVueParent.$parent;
     } else {
