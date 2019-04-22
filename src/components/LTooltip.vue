@@ -15,7 +15,6 @@ export default {
     this.mapObject.setContent(this.content || this.$el);
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.mapObject.bindTooltip(this.mapObject);
-    this.$emit('ready', this.mapObject);
   },
   beforeDestroy () {
     if (this.parentContainer) {

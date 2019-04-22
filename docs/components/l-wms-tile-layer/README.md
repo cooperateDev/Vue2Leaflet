@@ -81,7 +81,9 @@ export default {
 
 ## Events
 
-[filename](../shared-events.md ':include')
+`l-wms-tile-layer` does not emit any event on his own.
+
+[filename](../events-notice.md ':include')
 
 ## Extends
 

@@ -63,7 +63,9 @@ export default {
 
 ## Events
 
-[filename](../shared-events.md ':include')
+`l-polyline` does not emit any event on his own.
+
+[filename](../events-notice.md ':include')
 
 ## Extends
 

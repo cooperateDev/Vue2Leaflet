@@ -101,7 +101,6 @@ export default {
     );
 
     this.scheduleCreateIcon();
-    this.$emit('ready', this.mapObject);
   },
 
   beforeDestroy () {

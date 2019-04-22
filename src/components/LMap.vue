@@ -156,9 +156,7 @@ export default {
     DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, this.$options.props);
     this.ready = true;
-    // DEPRECATED leaflet:load
     this.$emit('leaflet:load');
-    this.$emit('ready', this.mapObject);
   },
   methods: {
     registerLayerControl (lControlLayers) {

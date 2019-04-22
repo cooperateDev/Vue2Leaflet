@@ -70,10 +70,11 @@ export default {
 
 ## Events
 
+`l-grid-layer` does emit any event on his own.
 Leaflet's `tileunload` event is internally used to trigger the destruction
 of the tile components when a tile leaves the visible area.
 
-[filename](../shared-events.md ':include')
+[filename](../events-notice.md ':include')
 
 ## Extends
 

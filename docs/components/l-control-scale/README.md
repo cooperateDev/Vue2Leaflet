@@ -11,7 +11,7 @@ Any of the props of `l-control-scale` or the classes that it extends can be used
 
 <template>
   <l-map style="height: 100%; width: 100%" :zoom="zoom" :center="center">
-    <l-control-scale position="topright" :imperial="true" :metric="false"></l-control-scale>
+    <l-control-scale position="topright" scale="imperial" ></l-control-scale>
     <l-tile-layer :url="url"></l-tile-layer>
   </l-map>
 </template>
@@ -67,7 +67,9 @@ export default {
 
 ## Events
 
-[filename](../shared-events.md ':include')
+`l-control-scale` does not emit any event on his own.
+
+[filename](../events-notice.md ':include')
 
 ## Extends
 

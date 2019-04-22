@@ -26,7 +26,6 @@ export default {
     if (this.visible) {
       this.parentContainer.addLayer(this);
     }
-    this.$emit('ready', this.mapObject);
   }
 };
 </script>
