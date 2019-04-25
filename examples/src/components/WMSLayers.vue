@@ -3,15 +3,16 @@
     <div style="height: 15%; overflow: auto;">
       <h3>WMS Layers with Layer selector</h3>
       <p>
-        <b>NOTE:</b> Use layer symbol on the top right to select which layer you
-        want to display. More information about WMS (Web Map Service) can be
-        found on the
-        <a href="http://leafletjs.com/examples/wms/wms.html"
-          >leaflet.js WMS example page</a
-        >.
+        <b>NOTE:</b> Use layer symbol on the top right to select which layer you want to
+        display.
+        More information about WMS (Web Map Service) can be found on the
+        <a href="http://leafletjs.com/examples/wms/wms.html">leaflet.js WMS example page</a>.
       </p>
     </div>
-    <l-map :zoom="zoom" :center="center" style="height: 80%">
+    <l-map
+      :zoom="zoom"
+      :center="center"
+      style="height: 80%">
       <l-control-layers />
       <l-wms-tile-layer
         v-for="layer in layers"
@@ -20,44 +21,43 @@
         :layers="layer.layers"
         :visible="layer.visible"
         :name="layer.name"
-        layer-type="base"
-      />
+        layer-type="base" />
     </l-map>
   </div>
 </template>
 
 <script>
-import { LMap, LWMSTileLayer, LControlLayers } from "vue2-leaflet";
+import { LMap, LTileLayer, LWMSTileLayer, LControlLayers } from 'vue2-leaflet';
 
 export default {
-  name: "WmsLayers",
+  name: 'WmsLayers',
   components: {
     LMap,
-    "l-wms-tile-layer": LWMSTileLayer,
+    LTileLayer,
+    'l-wms-tile-layer': LWMSTileLayer,
     LControlLayers
   },
-  data() {
+  data () {
     return {
       zoom: 4,
       center: [49, 12],
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
-      baseUrl: "https://demo.boundlessgeo.com/geoserver/ows?",
+      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      baseUrl: 'https://demo.boundlessgeo.com/geoserver/ows?',
       layers: [
         {
-          name: "Boundaries",
+          name: 'Boundaries',
           visible: true,
-          layers: "ne:ne_10m_admin_0_boundary_lines_land"
+          layers: 'ne:ne_10m_admin_0_boundary_lines_land'
         },
         {
-          name: "Countries",
+          name: 'Countries',
           visible: false,
-          layers: "ne:ne_10m_admin_0_countries"
+          layers: 'ne:ne_10m_admin_0_countries'
         },
         {
-          name: "Boundaries and Countries",
+          name: 'Boundaries and Countries',
           visible: false,
-          layers:
-            "ne:ne_10m_admin_0_boundary_lines_land,ne:ne_10m_admin_0_countries"
+          layers: 'ne:ne_10m_admin_0_boundary_lines_land,ne:ne_10m_admin_0_countries'
         }
       ]
     };

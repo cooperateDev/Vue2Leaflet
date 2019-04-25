@@ -1,14 +1,17 @@
 <template>
-  <l-marker :lat-lng="position" :title="title" :draggable="false">
-    <l-popup :content="text" />
+  <l-marker
+    :lat-lng="position"
+    :title="title"
+    :draggable="false">
+    <l-popup :content="text"/>
   </l-marker>
 </template>
 
 <script>
-import { LMarker, LPopup } from "vue2-leaflet";
+import { LMarker, LPopup } from 'vue2-leaflet';
 
 export default {
-  name: "MarkerPopup",
+  name: 'MarkerPopup',
   components: {
     LMarker,
     LPopup
@@ -16,7 +19,7 @@ export default {
   props: {
     text: {
       type: String,
-      default: ""
+      default: ''
     },
     position: {
       type: Object,
@@ -24,7 +27,7 @@ export default {
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     }
   }
 };
