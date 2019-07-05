@@ -40,19 +40,22 @@ export default {
       let attributionControl = this.$parent.mapObject.attributionControl;
       attributionControl.removeAttribution(old).addAttribution(val);
     },
-    setName () {
+    setName (newVal, oldVal) {
+      if (newVal === oldVal) return;
       this.parentContainer.removeLayer(this);
       if (this.visible) {
         this.parentContainer.addLayer(this);
       }
     },
-    setLayerType () {
+    setLayerType (newVal, oldVal) {
+      if (newVal === oldVal) return;
       this.parentContainer.removeLayer(this);
       if (this.visible) {
         this.parentContainer.addLayer(this);
       }
     },
-    setVisible (newVal) {
+    setVisible (newVal, oldVal) {
+      if (newVal === oldVal) return;
       if (this.mapObject) {
         if (newVal) {
           this.parentContainer.addLayer(this);
