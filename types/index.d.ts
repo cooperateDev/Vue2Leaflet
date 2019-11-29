@@ -503,11 +503,11 @@ declare module "vue2-leaflet" {
     /**
      * @default null
      */
-    bounds: L.LatLngBoundsExpression | null;
+    bounds: L.BoundsExpression | null;
     /**
      * @default null
      */
-    maxBounds: L.LatLngBoundsExpression | null;
+    maxBounds: L.BoundsExpression | null;
     /**
      * @default 0
      */
@@ -578,7 +578,7 @@ declare module "vue2-leaflet" {
 
     setPadding(newVal: L.PointExpression, oldVal?: L.PointExpression): void;
 
-    fitBounds(bounds: L.LatLngBoundsExpression): void;
+    fitBounds(bounds: L.BoundsExpression): void;
 
     moveEndHandler(): void;
   }
@@ -623,7 +623,7 @@ declare module "vue2-leaflet" {
     /**
      * @default []
      */
-    latLngs: L.LatLngExpression[];
+    latLongs: L.LatLngExpression[];
 
     // data
     ready: boolean;
@@ -635,7 +635,7 @@ declare module "vue2-leaflet" {
     /**
      * @default []
      */
-    latLngs: L.LatLngExpression[];
+    latLongs: L.LatLngExpression[];
 
     // data
     ready: boolean;
