@@ -20,7 +20,7 @@ export default {
   },
   mounted() {
     this.mapObject = featureGroup();
-    propsBinder(this, this.mapObject, this.$options.props);
+    propsBinder(this, this.mapObject, this);
     DomEvent.on(this.mapObject, this.$listeners);
     this.ready = true;
     this.parentContainer = findRealParent(this.$parent, true);

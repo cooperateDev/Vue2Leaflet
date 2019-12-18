@@ -12,11 +12,7 @@
       :max-zoom="maxZoom"
       style="height: 45%"
     >
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-        :token="token"
-      />
+      <l-tile-layer :url="url" :attribution="attribution" :token="token" />
       <l-marker
         v-for="item in markers"
         :key="item.id"
@@ -63,11 +59,7 @@
       :max-zoom="maxZoom"
       style="height: 45%"
     >
-      <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-        :token="token"
-      />
+      <l-tile-layer :url="url" :attribution="attribution" :token="token" />
       <l-marker
         v-for="item in markers"
         :key="item.id"

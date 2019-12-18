@@ -1,9 +1,5 @@
 <template>
-  <l-marker
-    :lat-lng="position"
-    :title="title"
-    :draggable="false"
-  >
+  <l-marker :lat-lng="position" :title="title" :draggable="false">
     <l-popup :content="text" />
   </l-marker>
 </template>

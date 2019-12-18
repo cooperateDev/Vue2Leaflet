@@ -113,7 +113,6 @@ export default {
       lastSetZoom: null,
       layerControl: undefined,
       layersToAdd: [],
-      layersInControl: [],
     };
   },
   computed: {
@@ -164,8 +163,6 @@ export default {
     this.mapObject = map(this.$el, options);
     this.setBounds(this.bounds);
     this.mapObject.on('moveend', debounce(this.moveEndHandler, 100));
-    this.mapObject.on('overlayadd', this.overlayAddHandler);
-    this.mapObject.on('overlayremove', this.overlayRemoveHandler);
     DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, this.$options.props);
     this.ready = true;
@@ -189,22 +186,11 @@ export default {
         if (this.layerControl === undefined) {
           this.layersToAdd.push(layer);
         } else {
-          const exist = this.layersInControl.find(
-            l => l.mapObject._leaflet_id === layer.mapObject._leaflet_id
-          );
-          if (!exist) {
-            this.layerControl.addLayer(layer);
-            this.layersInControl.push(layer);
-          }
+          this.layerControl.addLayer(layer);
         }
       }
       if (!alreadyAdded && layer.visible !== false) {
         this.mapObject.addLayer(layer.mapObject);
-      }
-    },
-    hideLayer(layer) {
-      if (layer.layerType !== undefined) {
-        this.mapObject.removeLayer(layer.mapObject);
       }
     },
     removeLayer(layer, alreadyRemoved) {
@@ -215,9 +201,6 @@ export default {
           );
         } else {
           this.layerControl.removeLayer(layer);
-          this.layersInControl = this.layersInControl.filter(
-            l => l.mapObject._leaflet_id !== layer.mapObject._leaflet_id
-          );
         }
       }
       if (!alreadyRemoved) {
@@ -280,18 +263,6 @@ export default {
       this.$emit('update:center', center);
       const bounds = this.mapObject.getBounds();
       this.$emit('update:bounds', bounds);
-    },
-    overlayAddHandler(e) {
-      const layer = this.layersInControl.find(l => l.name === e.name);
-      if (layer) {
-        layer.updateVisibleProp(true);
-      }
-    },
-    overlayRemoveHandler(e) {
-      const layer = this.layersInControl.find(l => l.name === e.name);
-      if (layer) {
-        layer.updateVisibleProp(false);
-      }
     },
   },
 };
