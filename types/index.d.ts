@@ -9,9 +9,6 @@
  * type findRealParent
  * replace all misc any types with proper types
  */
-/**
- * 'L' references the leaflet package, such as used with L.Bounds
- */
 
 declare module "vue2-leaflet" {
   import Vue from "vue";

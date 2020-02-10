@@ -34,10 +34,8 @@ yarn add leaflet vue2-leaflet
 
 ```js
 import Vue from 'vue';
-import { LMap, LTileLayer, LMarker, fixDefaultIcons } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
-
-fixDefaultIcons();
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
@@ -49,9 +47,6 @@ Vue.component('l-marker', LMarker);
 ##### In your component:
 
 ```js
-// If you need to reference 'L', such as in 'L.icon', then be sure to
-// explicitly import 'leaflet' into your component
-import L from 'leaflet';
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 export default {
@@ -68,9 +63,6 @@ export default {
 
 ```js
 import 'leaflet/dist/leaflet.css';
-import { fixDefaultIcons } from 'vue2-leaflet';
-
-fixDefaultIcons();
 ```
 
 ### If Imported by CDN
@@ -99,9 +91,7 @@ But it can be manually done by adding a plugin let's say `leaflet.js` in your `p
 
 ```js
 import Vue from 'vue';
-import { LMap, LTileLayer, LMarker, fixDefaultIcons } from 'vue2-leaflet';
-
-fixDefaultIcons();
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
@@ -120,6 +110,21 @@ And then by remembering that `leaflet` cannot be server-side-rendered and so usi
 <client-only>
   <l-map></l-map>
 </client-only>
+```
+
+## Marker Icons are missing
+
+If the maker icons are missing the issue lies in a problem with webpack, a quick fix is to run this snippet:
+
+```javascript
+import { Icon } from 'leaflet';
+
+delete Icon.Default.prototype._getIconUrl;
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+});
 ```
 
 ## Accessing `leaflet` api
