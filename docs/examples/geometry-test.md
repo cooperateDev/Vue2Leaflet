@@ -9,7 +9,7 @@ pageClass: example-page
 
   <div>
       <button @click="clickBtn">
-        Change rectangle style
+        Change rectange style
       </button>
     </div>
     <l-map
